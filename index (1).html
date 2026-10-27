@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101018">
+<title>⚠️ ¿ESTÁS SEGURO? — URL INFINITA™</title>
+<style>
+:root{color-scheme:dark;--bg:#101018;--panel:#191923;--line:#39394c;--pink:#ff3b81;--cyan:#57f5ff;--muted:#b5b5c8;--green:#8cff9b}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#29203c 0,#101018 58%);color:#f7f5ff;font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;padding:24px}
+main{width:min(850px,100%);margin:0 auto}
+header{text-align:center;margin:22px 0 28px}
+.warning{display:inline-block;color:#ffd166;border:1px solid #8b6b2b;background:#332811;padding:6px 12px;border-radius:999px;font-size:.82rem;font-weight:800;letter-spacing:.08em}
+h1{font-size:clamp(2rem,6vw,3.8rem);line-height:1.04;margin:18px 0 12px;letter-spacing:-.04em}
+h1 span{color:var(--pink)}
+.subtitle{color:var(--muted);max-width:600px;margin:auto}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,4vw,30px);margin:18px 0;box-shadow:0 18px 50px #0004}
+.label{font-size:.78rem;color:var(--muted);font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.url{overflow-wrap:anywhere;background:#0c0c12;border:1px solid #333345;border-radius:10px;padding:14px;color:var(--cyan);font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+a{color:var(--cyan)}
+.controls{display:grid;grid-template-columns:1fr;gap:14px}
+input[type=number]{width:100%;background:#0c0c12;color:white;border:1px solid #45455a;border-radius:10px;padding:12px;font:inherit}
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+button{cursor:pointer;border:1px solid #4a4a60;border-radius:10px;padding:11px 15px;background:#252536;color:#fff;font:inherit;font-weight:750;transition:transform .12s,border-color .12s}
+button:hover{transform:translateY(-1px);border-color:var(--cyan)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+button.primary{width:100%;margin-top:18px;padding:15px;background:linear-gradient(110deg,#ff3b81,#a53bff);border:0;font-size:1.05rem}
+button.copy{margin-top:10px;width:100%}
+button:disabled{opacity:.45;cursor:not-allowed}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.stat{background:#101018;border:1px solid var(--line);border-radius:12px;padding:14px}
+.stat strong{display:block;font-size:clamp(1.35rem,4vw,2rem);color:var(--green);overflow-wrap:anywhere}
+.stat span{font-size:.82rem;color:var(--muted)}
+#result{margin-top:14px;max-height:210px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.note{color:var(--muted);font-size:.88rem}
+footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
+@media(max-width:520px){body{padding:14px}.stats{grid-template-columns:1fr 1fr}.panel{border-radius:14px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="warning">⚠️ ¿ESTÁS SEGURO?</div>
+  <h1>Generador de la URL <span>más larga</span> del mundo™</h1>
+  <p class="subtitle">Pulsa el botón y observa el crimen informático 💀. Una demo local para fabricar rutas absurdamente largas.</p>
+</header>
+<section class="panel">
+  <div class="label">URL actual</div>
+  <div class="url">https://anyelo888ra-ux.github.io/AAAAAAAAAAAAA.laurlmasgrandedelmundo.duckdns.org/</div>
+  <p class="note">La ruta se genera como texto. No navega automáticamente ni envía una petición gigante al servidor.</p>
+</section>
+<section class="panel">
+  <div class="label">Repeticiones de <code>/AAAAAAAAAAAAA.html/</code></div>
+  <div class="controls">
+    <label for="count">Número de repeticiones (máximo de esta demo: 5.000)</label>
+    <input id="count" type="number" min="1" max="5000" step="1" value="100">
+    <div class="presets" aria-label="Valores rápidos">
+      <button type="button" data-count="1">1</button>
+      <button type="button" data-count="2500">2.500</button>
+      <button type="button" data-count="5000">5.000</button>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><strong id="length">0</strong><span>Caracteres estimados de la URL</span></div>
+    <div class="stat"><strong id="pathLength">0</strong><span>Caracteres añadidos a la ruta</span></div>
+  </div>
+  <button class="primary" id="generate" type="button">💀 SÍ, QUIERO LA URL INFINITA</button>
+  <div class="label" style="margin-top:20px">Resultado generado</div>
+  <div class="url" id="result" aria-live="polite">Pulsa el botón para crear tu URL maldita.</div>
+  <button class="copy" id="copy" type="button" disabled>📋 Copiar URL generada</button>
+  <p class="note" id="status" aria-live="polite">Demo local: solo genera y muestra texto.</p>
+</section>
+<section class="panel">
+  <strong>☠️ Aviso de límites reales</strong>
+  <p class="note">Los límites dependen del navegador, servidor, proxy y de cada componente de la URL. Una ruta muy larga puede no abrirse aunque el generador pueda construirla. GitHub Pages tampoco crea físicamente miles de archivos o directorios por generar esta cadena.</p>
+</section>
+<footer>HECHO PARA ROMPER MATEMÁTICAMENTE EL SENTIDO COMÚN · NO TU NAVEGADOR</footer>
+</main>
+<script>
+(() => {
+  const BASE = 'https://anyelo888ra-ux.github.io/AAAAAAAAAAAAA.laurlmasgrandedelmundo.duckdns.org/';
+  const SEGMENT = 'AAAAAAAAAAAAA.html/';
+  const countInput = document.querySelector('#count');
+  const lengthEl = document.querySelector('#length');
+  const pathLengthEl = document.querySelector('#pathLength');
+  const resultEl = document.querySelector('#result');
+  const copyBtn = document.querySelector('#copy');
+  const statusEl = document.querySelector('#status');
+  let generated = '';
+  function safeCount() {
+    const n = Number.parseInt(countInput.value, 10);
+    return Number.isFinite(n) ? Math.min(5000, Math.max(1, n)) : 1;
+  }
+  function updateEstimate() {
+    const n = safeCount();
+    pathLengthEl.textContent = (n * SEGMENT.length).toLocaleString('es-ES');
+    lengthEl.textContent = (BASE.length + n * SEGMENT.length).toLocaleString('es-ES');
+  }
+  document.querySelectorAll('[data-count]').forEach(button => {
+    button.addEventListener('click', () => { countInput.value = button.dataset.count; updateEstimate(); });
+  });
+  countInput.addEventListener('input', updateEstimate);
+  document.querySelector('#generate').addEventListener('click', () => {
+    const n = safeCount();
+    countInput.value = n;
+    generated = BASE + SEGMENT.repeat(n);
+    resultEl.textContent = generated;
+    copyBtn.disabled = false;
+    updateEstimate();
+    statusEl.textContent = `URL generada con ${n.toLocaleString('es-ES')} repeticiones. No se ha abierto ni enviado.`;
+  });
+  copyBtn.addEventListener('click', async () => {
+    if (!generated) return;
+    try {
+      await navigator.clipboard.writeText(generated);
+      statusEl.textContent = '¡Copiada! Ahora no la pegues en la barra de direcciones sin pensar. 💀';
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(resultEl);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      statusEl.textContent = 'No se pudo acceder al portapapeles automáticamente. Seleccioné el texto para que lo copies manualmente.';
+    }
+  });
+  updateEstimate();
+})();
+</script>
+</body>
+</html>
