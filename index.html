@@ -53,12 +53,12 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
 <section class="panel">
   <div class="label">Repeticiones de <code>/AAAAAAAAAAAAA.html/</code></div>
   <div class="controls">
-    <label for="count">Número de repeticiones (máximo de esta demo: 5.000)</label>
-    <input id="count" type="number" min="1" max="5000" step="1" value="100">
+    <label for="count">Número de repeticiones (máximo de esta demo: 110.000)</label>
+    <input id="count" type="number" min="1" max="110000" step="1" value="3000">
     <div class="presets" aria-label="Valores rápidos">
       <button type="button" data-count="1">1</button>
       <button type="button" data-count="2500">2.500</button>
-      <button type="button" data-count="5000">5.000</button>
+      <button type="button" data-count="5000">5.000</button><button type="button" data-count="10000">10.000</button><button type="button" data-count="50000">50.000</button><button type="button" data-count="110000">110.000</button>
     </div>
   </div>
   <div class="stats">
@@ -68,7 +68,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
   <button class="primary" id="generate" type="button">💀 SÍ, QUIERO LA URL INFINITA</button>
   <div class="label" style="margin-top:20px">Resultado generado</div>
   <div class="url" id="result" aria-live="polite">Pulsa el botón para crear tu URL maldita.</div>
-  <button class="copy" id="copy" type="button" disabled>📋 Copiar URL generada</button>
+  <button class="copy" id="copy" type="button" disabled>📋 Copiar URL generada</button><button class="copy" id="download" type="button" disabled>💾 Descargar URL completa como .txt</button>
   <p class="note" id="status" aria-live="polite">Demo local: solo genera y muestra texto.</p>
 </section>
 <section class="panel">
@@ -82,6 +82,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
   const BASE = 'https://anyelo888ra-ux.github.io/AAAAAAAAAAAAA.laurlmasgrandedelmundo.duckdns.org/';
   const SEGMENT = 'AAAAAAAAAAAAA.html/';
   const countInput = document.querySelector('#count');
+  const downloadBtn = document.querySelector('#download');
   const lengthEl = document.querySelector('#length');
   const pathLengthEl = document.querySelector('#pathLength');
   const resultEl = document.querySelector('#result');
@@ -90,7 +91,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
   let generated = '';
   function safeCount() {
     const n = Number.parseInt(countInput.value, 10);
-    return Number.isFinite(n) ? Math.min(5000, Math.max(1, n)) : 1;
+    return Number.isFinite(n) ? Math.min(110000, Math.max(1, n)) : 1;
   }
   function updateEstimate() {
     const n = safeCount();
@@ -105,10 +106,22 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
     const n = safeCount();
     countInput.value = n;
     generated = BASE + SEGMENT.repeat(n);
-    resultEl.textContent = generated;
+    resultEl.textContent = generated.length > 12000 ? generated.slice(0,6000) + '\n\n… VISTA PREVIA RECORTADA; descarga el .txt para obtener la URL completa …\n\n' + generated.slice(-6000) : generated;
     copyBtn.disabled = false;
+    downloadBtn.disabled = false;
     updateEstimate();
-    statusEl.textContent = `URL generada con ${n.toLocaleString('es-ES')} repeticiones. No se ha abierto ni enviado.`;
+    statusEl.textContent = `URL generada con ${generated.length.toLocaleString('es-ES')} caracteres. La vista previa puede estar recortada; descarga el .txt para guardar la URL completa. La ruta no se crea automáticamente.`;
+  });
+  downloadBtn.addEventListener('click', () => {
+    if (!generated) return;
+    const blob = new Blob([generated], {type:'text/plain;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'url-mas-larga-' + generated.length + '-caracteres.txt';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    statusEl.textContent = 'Descargada la URL completa (' + generated.length.toLocaleString('es-ES') + ' caracteres).';
   });
   copyBtn.addEventListener('click', async () => {
     if (!generated) return;
