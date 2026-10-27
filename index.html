@@ -23,7 +23,7 @@
 :root{color-scheme:dark;--bg:#101018;--panel:#191923;--line:#39394c;--pink:#ff3b81;--cyan:#57f5ff;--muted:#b5b5c8;--green:#8cff9b}
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(ellipse at top,#29203c 0,#101018 58%);color:#f7f5ff;font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;padding:24px}
-main{width:min(850px,100%);margin:0 auto}
+main{width:min(980px,100%);margin:0 auto}\n.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:stretch}.hero-card{background:linear-gradient(135deg,#222239,#171722);border:1px solid #45455d;border-radius:18px;padding:22px;box-shadow:0 18px 50px #0004}.hero-card h2{margin:8px 0;color:#fff}.hero-card p{color:var(--muted)}.pill{display:inline-block;font-size:.75rem;border:1px solid #4b4b63;border-radius:999px;padding:4px 9px;color:var(--cyan)}.featurelink{display:inline-flex;gap:8px;align-items:center;text-decoration:none;background:linear-gradient(110deg,#0078d4,#005a9e);padding:11px 14px;border-radius:9px;color:#fff;font-weight:800}.featurelink:hover{filter:brightness(1.15)}.quicklinks{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0}.quicklinks a{border:1px solid var(--line);border-radius:9px;padding:8px 11px;text-decoration:none;background:#191923}.quicklinks a:hover{border-color:var(--pink)}
 header{text-align:center;margin:22px 0 28px}
 .warning{display:inline-block;color:#ffd166;border:1px solid #8b6b2b;background:#332811;padding:6px 12px;border-radius:999px;font-size:.82rem;font-weight:800;letter-spacing:.08em}
 h1{font-size:clamp(2rem,6vw,3.8rem);line-height:1.04;margin:18px 0 12px;letter-spacing:-.04em}
@@ -49,7 +49,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 #result{margin-top:14px;max-height:210px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
 .note{color:var(--muted);font-size:.88rem}
 footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
-@media(max-width:520px){body{padding:14px}.stats{grid-template-columns:1fr 1fr}.panel{border-radius:14px}}
+@media(max-width:700px){.hero-grid{grid-template-columns:1fr}}\n@media(max-width:520px){body{padding:14px}.stats{grid-template-columns:1fr 1fr}.panel{border-radius:14px}}
 </style>
 </head>
 <body>
@@ -58,7 +58,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
   <div class="warning">⚠️ ¿ESTÁS SEGURO?</div>
   <h1>Generador de la URL <span>más larga</span> del mundo™</h1>
   <p class="subtitle">Elige cuántos segmentos quieres y pulsa el botón: el navegador intentará abrir directamente esa URL 💀.</p>
-</header>
+</header>\n<div class="hero-grid">\n<section class="hero-card"><span class="pill">PROYECTO EXPERIMENTAL</span><h2>Una web, demasiadas malas decisiones 💀</h2><p>Genera direcciones absurdas, explora estados HTTP y comprueba hasta dónde llega una URL antes de que el servidor se rinda.</p><div class="quicklinks"><a href="./400.html">HTTP 400</a><a href="./404.html">HTTP 404</a><a href="./414.html">HTTP 414</a></div></section>\n<section class="hero-card"><span class="pill">NUEVO · SIMULACIÓN SEGURA</span><h2>🪟 Windows 10.exe: modo caos</h2><p>Un escritorio ficticio con navegador falso, errores visuales, pantallas azules y un formateo de mentira. Nada toca tu ordenador real.</p><a class="featurelink" href="./windows10.html">▶ Entrar al simulador</a></section>\n</div>
 <section class="panel">
   <div class="label">URL actual</div>
   <div class="url">https://anyelo888ra-ux.github.io/AAAAAAAAAAAAA.laurlmasgrandedelmundo.estaeslaurlmaslargaquepuedescrearcongithubpageslong.duckdns.org/</div>
