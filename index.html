@@ -57,12 +57,12 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
 <header>
   <div class="warning">⚠️ ¿ESTÁS SEGURO?</div>
   <h1>Generador de la URL <span>más larga</span> del mundo™</h1>
-  <p class="subtitle">Pulsa el botón y observa el crimen informático 💀. Una demo local para fabricar rutas absurdamente largas.</p>
+  <p class="subtitle">Elige cuántos segmentos quieres y pulsa el botón: el navegador intentará abrir directamente esa URL 💀.</p>
 </header>
 <section class="panel">
   <div class="label">URL actual</div>
   <div class="url">https://anyelo888ra-ux.github.io/AAAAAAAAAAAAA.laurlmasgrandedelmundo.duckdns.org/</div>
-  <p class="note">La ruta se genera como texto. No navega automáticamente ni envía una petición gigante al servidor.</p>
+  <p class="note">El botón de generar navega directamente a la ruta elegida. El servidor puede rechazar URLs demasiado largas o devolver 404 si esa ruta no existe.</p>
 </section>
 <section class="panel">
   <div class="label">Repeticiones de <code>/AAAAAAAAAAAAA.html/</code></div>
@@ -81,13 +81,13 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
   </div>
   <button class="primary" id="generate" type="button">💀 SÍ, QUIERO LA URL INFINITA</button>
   <div class="label" style="margin-top:20px">Resultado generado</div>
-  <div class="url" id="result" aria-live="polite">Pulsa el botón para crear tu URL maldita.</div>
+  <div class="url" id="result" aria-live="polite">Al generar, irás directamente a la URL solicitada.</div>
   <button class="copy" id="copy" type="button" disabled>📋 Copiar URL generada</button><button class="copy" id="download" type="button" disabled>💾 Descargar URL completa como .txt</button>
-  <p class="note" id="status" aria-live="polite">Demo local: solo genera y muestra texto.</p>
+  <p class="note" id="status" aria-live="polite">Modo de navegación directa: al generar, se abrirá la URL solicitada.</p>
 </section>
 <section class="panel">
   <strong>☠️ Aviso de límites reales</strong>
-  <p class="note">Los límites dependen del navegador, servidor, proxy y de cada componente de la URL. Una ruta muy larga puede no abrirse aunque el generador pueda construirla. GitHub Pages tampoco crea físicamente miles de archivos o directorios por generar esta cadena.</p>
+  <p class="note">Los límites dependen del navegador, servidor, proxy y de cada componente de la URL. Una ruta muy larga puede ser rechazada por el navegador, GitHub Pages o un proxy. La navegación directa no crea físicamente directorios: las rutas profundas solo funcionarán si existen en el repositorio.</p>
 </section>
 <footer>HECHO PARA ROMPER MATEMÁTICAMENTE EL SENTIDO COMÚN · NO TU NAVEGADOR</footer>
 </main>
@@ -120,11 +120,9 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;margin:24px 0}
     const n = safeCount();
     countInput.value = n;
     generated = BASE + SEGMENT.repeat(n);
-    resultEl.textContent = generated.length > 12000 ? generated.slice(0,6000) + '\n\n… VISTA PREVIA RECORTADA; descarga el .txt para obtener la URL completa …\n\n' + generated.slice(-6000) : generated;
-    copyBtn.disabled = false;
-    downloadBtn.disabled = false;
     updateEstimate();
-    statusEl.textContent = `URL generada con ${generated.length.toLocaleString('es-ES')} caracteres. La vista previa puede estar recortada; descarga el .txt para guardar la URL completa. La ruta no se crea automáticamente.`;
+    statusEl.textContent = `Intentando abrir directamente una URL de ${generated.length.toLocaleString('es-ES')} caracteres… Si el navegador o el servidor la rechazan, puede aparecer un error como 414 o 404.`;
+    window.location.assign(generated);
   });
   downloadBtn.addEventListener('click', () => {
     if (!generated) return;
