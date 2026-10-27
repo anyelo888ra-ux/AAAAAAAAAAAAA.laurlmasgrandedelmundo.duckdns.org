@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://anyelo888ra-ux.github.io/AAAAAAAAAAAAA.laurlmasgrandedelmundo.duckdns.org/sitemap.xml
+
+Sitemap: https://anyelo888ra-ux.github.io/AAAAAAAAAAAAA.laurlmasgrandedelmundo.estaeslaurlmaslargaquepuedescrearcongithubpageslong.duckdns.org/sitemap.xml
